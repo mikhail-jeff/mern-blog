@@ -87,15 +87,16 @@ const SignUp = () => {
 							<Label value="Password"></Label>
 							<TextInput
 								type="password"
-								placeholder="Password"
 								id="password"
+								placeholder="**********"
 								onChange={handleChange}
 							/>
 						</div>
 						<Button
 							type="submit"
 							gradientDuoTone="purpleToPink"
-							disabled={loading}>
+							disabled={loading}
+							className="mt-1">
 							{loading ? (
 								<span className="flex items-center gap-2">
 									<Spinner size="md" />
@@ -107,12 +108,12 @@ const SignUp = () => {
 						</Button>
 					</form>
 
-					<div className="flex gap-1 mt-5">
+					<div className="flex gap-1 mt-1">
 						<span className="text-sm">Have an account?</span>
 						<Link
 							to={"/sign-in"}
 							className="text-blue-500 text-sm">
-							Sign In
+							Sign-in
 						</Link>
 					</div>
 
