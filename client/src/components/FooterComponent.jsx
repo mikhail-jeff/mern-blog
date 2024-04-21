@@ -114,7 +114,7 @@ const FooterComponent = () => {
 							href="https://github.com/"
 							target="_blank"
 							icon={BsGithub}
-							className="text-[#24292e]"
+							className="text-[#528ec9]"
 						/>
 						<Footer.Icon
 							href="https://dribbble.com/"
