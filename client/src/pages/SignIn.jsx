@@ -1,11 +1,15 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 
 const SignIn = () => {
 	const [formData, setFormData] = useState({});
-	const [errorMessage, setErrorMEssage] = useState(null);
-	const [loading, setLoading] = useState(false);
+
+	const { loading, error: errorMessage } = useSelector((state) => state.user);
+	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
 
@@ -17,12 +21,11 @@ const SignIn = () => {
 		e.preventDefault();
 
 		if (!formData.email || !formData.password) {
-			return setErrorMEssage("Please fill out all fields");
+			return dispatch(signInFailure("Please fill all the fields"));
 		}
 
 		try {
-			setLoading(true);
-			setErrorMEssage(null);
+			dispatch(signInStart());
 			const response = await fetch("/api/auth/signin", {
 				method: "POST",
 				headers: {
@@ -33,18 +36,16 @@ const SignIn = () => {
 
 			const data = await response.json();
 
-			setLoading(false);
-
 			if (data.success === false) {
-				return setErrorMEssage(data.message);
+				dispatch(signInFailure(data.message));
 			}
 
 			if (response.ok) {
+				dispatch(signInSuccess(data));
 				navigate("/");
 			}
 		} catch (error) {
-			setErrorMEssage(error.message);
-			setLoading(false);
+			dispatch(signInFailure(error.message));
 		}
 	};
 
@@ -97,6 +98,7 @@ const SignIn = () => {
 								"Sign In"
 							)}
 						</Button>
+						<OAuth />
 					</form>
 
 					<div className="flex gap-1 mt-1">

@@ -40,6 +40,18 @@ const FooterComponent = () => {
 									rel="noopener noreferrer">
 									Flowbite React
 								</Footer.Link>
+								<Footer.Link
+									href="https://firebase.google.com/"
+									target="_blank"
+									rel="noopener noreferrer">
+									Firebase
+								</Footer.Link>
+								<Footer.Link
+									href="https://redux.js.org/"
+									target="_blank"
+									rel="noopener noreferrer">
+									Redux
+								</Footer.Link>
 							</Footer.LinkGroup>
 						</div>
 
@@ -66,6 +78,7 @@ const FooterComponent = () => {
 							<Footer.LinkGroup col>
 								<Footer.Link href="#">Privacy Policy</Footer.Link>
 								<Footer.Link href="#">Terms of Service</Footer.Link>
+								<Footer.Link href="#">Licensing</Footer.Link>
 							</Footer.LinkGroup>
 						</div>
 					</div>
